@@ -1,3 +1,3 @@
 # Data visualization micro learning
 
-Explore some of the amazing [Chartjs](https://www.chartjs.org/)'s data visualization possibilities. 
+Explora algunas de las posibilidades de [Chartjs](https://www.chartjs.org/), efectos de escritura realizados con [TypeitJS](https://typeitjs.com/)
