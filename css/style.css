@@ -1,26 +1,30 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    font-weight: 100;
-    text-align: center
-}
-
 body {
-    padding: 100px 0;
+    font-family: 'Roboto Mono', sans-serif;
+    padding: 80px 40px;
 }
 
 h1 {
-    margin-bottom: 30px;
+    text-align: center;
+}
+
+.ship {
+    width: 200px;
+    margin-left: calc(50% - 100px);
+    margin-bottom: 80px;
 }
 
 section {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    margin-bottom: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+article {
+    width: 40%;
 }
 
 figure {
-    width: 40%;
-margin-bottom: 100px;
+    width: 45%;
 }

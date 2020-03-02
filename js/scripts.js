@@ -1,41 +1,57 @@
-let pages = 2, urls = []
 
-for (let i = 1; i <= pages; i++) {
+// Typeit plugin
+
+new TypeIt("h2", {
+    cursorChar: '_',
+    waitUntilVisible: true
+}).go();
+
+
+new TypeIt("p", {
+    cursorChar: '_',
+    speed: 10,
+    waitUntilVisible: true
+}).go();
+
+
+
+
+// Charts
+
+let urls = []
+
+for (let i = 1; i < 3; i++) {
     urls.push(`https://swapi.co/api/people/?page=${i}`)
 }
 
 Promise.all(urls.map(url =>
     fetch(url)
-        .then(res => res.json())
-        .catch(err => console.log("Error Getting Data From Star Wars API:", err))))
+        .then(response => response.json())))
     .then(allResults => allResults.map(eachResult => eachResult.results).flat())
-    .then(allCharacters => printCharacters(allCharacters))
+    .then(allCharacters => printCharts(allCharacters))
+    .catch(err => console.log('OPS! Errrorrr', err))
 
 
-
-
-const printCharacters = data => {
-    drawBarChart('q1', data, 200)
-    drawDoughnutChart('q2', data, 200)
-    drawPolarChart('q3', data, 200)
-    drawMixedChart('q4', data, 200)
+const printCharts = data => {
+    drawBarChart('chart1', data)
+    drawDoughnutChart('chart2', data)
+    drawPolarChart('chart3', data)
+    drawMixedChart('chart4', data)
 }
 
 
 
-const drawBarChart = (id, data, height) => {
-    height ? document.getElementById(id).height = height : null
-
+drawBarChart = (id, data) => {
     new Chart(id, {
         type: 'horizontalBar',
         data: {
             labels: data.map(eachCharacter => eachCharacter.name),
             datasets: [{
-                label: 'Movies made',
+                label: 'Películas protagonizadas',
                 data: data.map(eachCharacter => eachCharacter.films.length),
                 borderWidth: 1,
-                borderColor: 'rgba(0,50,250,.7)',
-                backgroundColor: 'rgba(0,250,50,.2)'
+                borderColor: 'rgba(0, 50, 250, .7)',
+                backgroundColor: 'rgba(0, 250, 50, .2)'
             }]
         }
     })
@@ -45,10 +61,7 @@ const drawBarChart = (id, data, height) => {
 
 
 
-
-const drawDoughnutChart = (id, data, height) => {
-    height ? document.getElementById(id).height = height : null
-
+const drawDoughnutChart = (id, data) => {
 
     new Chart(id, {
         type: 'doughnut',
@@ -80,8 +93,9 @@ const drawDoughnutChart = (id, data, height) => {
 
 
 
-const drawPolarChart = (id, data, height) => {
-    height ? document.getElementById(id).height = height : null
+
+const drawPolarChart = (id, data) => {
+
     new Chart(id, {
         type: 'polarArea',
         data: {
@@ -116,8 +130,10 @@ const drawPolarChart = (id, data, height) => {
 
 
 
-const drawMixedChart = (id, data, height) => {
-    height ? document.getElementById(id).height = height : null
+
+
+const drawMixedChart = (id, data) => {
+
     new Chart(id, {
         type: 'bar',
         data: {
